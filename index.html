@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remote ID Tracks the Honest Pilot and Lets the Real Threat Walk</title>
+<meta name="description" content="Remote ID is a surveillance tax on law-abiding drone pilots that stops zero real threats. It broadcasts the pilot's location in the clear, is unauthenticated and trivially spoofable. We built the open-source defense and gave it away.">
+<meta property="og:title" content="Remote ID Tracks the Honest Pilot and Lets the Real Threat Walk">
+<meta property="og:description" content="Remote ID broadcasts the pilot's own location, unencrypted, to anyone with a $6 chip, and is unauthenticated so a bad actor fakes a fleet and vanishes. We built the open-source detector that knows the difference.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --bg:#0b0d11;
+    --surface:#13161c;
+    --border:#272c36;
+    --text:#e6e8ec;
+    --muted:#99a0ad;
+    --accent:#ff5a3c;
+    --accent-soft:rgba(255,90,60,.12);
+    --link:#ff7a5c;
+  }
+  :root:not([data-theme="dark"]) @media (prefers-color-scheme: light){}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  header.site{
+    border-bottom:1px solid var(--border);
+    padding:18px 0;
+  }
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{font-weight:700;letter-spacing:.2px;color:var(--text);text-decoration:none;font-size:15px}
+  .brand span{color:var(--accent)}
+  nav.top a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:16px}
+  nav.top a:hover{color:var(--text)}
+  .hero{padding:56px 0 24px}
+  .kicker{
+    display:inline-block;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:6px 10px;border-radius:999px;margin-bottom:22px;font-weight:600;
+  }
+  h1{font-size:40px;line-height:1.12;margin:0 0 18px;letter-spacing:-.02em;font-weight:800}
+  .standfirst{font-size:20px;color:var(--muted);margin:0 0 10px;line-height:1.5}
+  article{padding:8px 0 40px}
+  article h2{font-size:26px;line-height:1.2;margin:46px 0 14px;letter-spacing:-.01em;font-weight:700}
+  article p{margin:0 0 20px}
+  article strong{color:#fff}
+  a{color:var(--link)}
+  a:hover{color:var(--accent)}
+  .cta{
+    display:flex;flex-wrap:wrap;gap:12px;
+    margin:28px 0 8px;
+  }
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:15px;
+    padding:12px 18px;border-radius:10px;border:1px solid var(--border);
+    color:var(--text);background:var(--surface);transition:border-color .15s,background .15s;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--text)}
+  .btn.primary{background:var(--accent);color:#120704;border-color:var(--accent)}
+  .btn.primary:hover{background:var(--link);color:#120704}
+  .assets{
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--surface);
+    padding:22px;
+    margin:36px 0;
+  }
+  .assets h3{margin:0 0 6px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .assets ul{list-style:none;margin:14px 0 0;padding:0}
+  .assets li{padding:12px 0;border-top:1px solid var(--border)}
+  .assets li:first-of-type{border-top:0}
+  .assets .name{font-weight:700;color:#fff}
+  .assets .name code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;color:#fff;background:transparent}
+  .assets .desc{color:var(--muted);font-size:15px;margin-top:3px}
+  .assets a{word-break:break-word}
+  hr.rule{border:0;border-top:1px solid var(--border);margin:40px 0}
+  footer.site{border-top:1px solid var(--border);padding:34px 0 60px;color:var(--muted);font-size:15px}
+  footer.site strong{color:var(--text)}
+  footer.site a{color:var(--link)}
+  .foot-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:16px}
+  @media (max-width:560px){
+    h1{font-size:30px}
+    .standfirst{font-size:18px}
+    article h2{font-size:22px}
+    .hero{padding:40px 0 16px}
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="https://github.com/Mattbusel/remoteid">remote<span>id</span></a>
+    <nav class="top">
+      <a href="https://mattbusel.github.io/drone-demos/">Demos</a>
+      <a href="https://mattbusel.github.io/remoteid-web/">Browser demo</a>
+      <a href="https://crates.io/crates/remoteid">crates.io</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="kicker">The shield, not the sword</span>
+    <h1>Remote ID Tracks the Honest Pilot and Lets the Real Threat Walk</h1>
+    <p class="standfirst">Here is the uncomfortable truth about Remote ID, the rule that every drone built since 2022 has to obey: it is a surveillance tax on law-abiding pilots, and it stops close to zero of the threats it was sold to stop.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://mattbusel.github.io/remoteid-web/">Run the browser demo</a>
+      <a class="btn" href="https://mattbusel.github.io/drone-demos/">See the demo gallery</a>
+      <a class="btn" href="https://crates.io/crates/remoteid">Get the crate</a>
+    </div>
+  </section>
+
+  <article>
+    <p>That is not a hot take. It is what the standard says when you read it.</p>
+
+    <h2>What Remote ID actually broadcasts</h2>
+    <p>Under ASTM F3411, a compliant drone continuously broadcasts a radio message that anyone nearby can receive. That message contains the drone's unique ID, its live position and altitude, and, critically, the location of the pilot who is flying it.</p>
+    <p>Not the location of some threat. The location of the operator. The hobbyist standing in his own backyard.</p>
+    <p>The broadcast is unencrypted. There is no key, no scrambling, nothing. A receiver that costs about six dollars pulls the whole thing out of the air in plain text. Any neighbor, any stalker, any stranger with a phone and the right app can watch where a drone is and walk straight to the person holding the controller.</p>
+    <p>For a technology pitched as public safety, that is a strange definition of safety. It makes the person following the rules the single easiest human being to find in the sky.</p>
+
+    <h2>It is also unauthenticated, which is the real scandal</h2>
+    <p>Broadcasting in the clear would be bad enough if it at least caught bad actors. It does not, because there is a second flaw stacked on the first: the broadcast is unauthenticated.</p>
+    <p>Unauthenticated means nothing in the message proves it came from a real drone. There is no signature a receiver can check. So a receiver has no way to tell a genuine aircraft from a message a laptop made up.</p>
+    <p>Think about what that hands an actual malicious operator. From a single cheap board, a bad actor can fabricate hundreds of drone broadcasts, each with its own fake ID and fake pilot location, scatter them across the map, and vanish into the noise. Nothing on the receiving end can separate the one drone that is real from the ninety-nine that are fiction.</p>
+    <p>So the person Remote ID reliably locates is the honest pilot, because the honest pilot is the only one whose broadcast is true. The threat it was built to catch simply lies, floods the channel, and leaves.</p>
+
+    <h2>The part the counter-UAS industry will not say</h2>
+    <p>There is a whole industry selling agencies and airports Remote ID receivers and counter-drone systems. Walk a trade floor and you will see dashboards lighting up with tracked aircraft, confident little icons on a map.</p>
+    <p>Here is what those demos leave out: most of those receivers believe everything they hear. They were validated against honest drones in a field, flying real flights, broadcasting true data. Of course they score well. Nobody was lying to them.</p>
+    <p>Feed that same receiver a flood of spoofed broadcasts and watch the map fill with ghosts. The system has no concept of trust. It cannot answer the only question that matters in a real incident, which is: of everything I am seeing, what is actually there?</p>
+    <p>A sensor that cannot survive a flood of fakes is not a sensor. It is a nightlight that makes the room feel safer without changing what is in it. The biggest mistake in counter-UAS procurement is not evaluating sensors and mitigation separately. It is trusting a receiver that has never been tested against someone trying to deceive it.</p>
+
+    <h2>So we built the shield</h2>
+    <p>We did not write this to complain. We wrote it because we built the defense and gave it away.</p>
+    <p><strong>remoteid</strong> is a Rust library that decodes both ASTM F3411 and DJI DroneID, and instead of blindly trusting the message, it returns a trust verdict on it. It is no_std, so it runs on tiny hardware, and it is on crates.io for anyone to use.</p>
+    <p><strong>remoteid-sentinel</strong> is the flood detector. Its whole job is the question above: when the channel fills with broadcasts, it works to catch the flood and surface the one real drone inside it, rather than drawing a hundred confident icons and calling it situational awareness.</p>
+    <p><strong>remoteid-esp32</strong> puts the detector on a board that costs about six dollars. The same six-dollar class of chip that can read a pilot's location out of the air can, with our code, instead be the thing that flags the attack.</p>
+    <p>You do not have to take any of this on faith. There is a demo gallery at <a href="https://mattbusel.github.io/drone-demos/">mattbusel.github.io/drone-demos</a> and a browser demo that needs no hardware at all at <a href="https://mattbusel.github.io/remoteid-web/">mattbusel.github.io/remoteid-web</a>. Run it, feed it, see the verdict.</p>
+
+    <h2>The honest caveats, because the rule has them and so do we</h2>
+    <p>Remote ID is not nothing. It does create accountability for the ordinary, non-malicious pilot who makes a mistake near an airport or over a crowd, the same way a license plate does on a car. If your threat model is careless hobbyists, it helps at the margins.</p>
+    <p>What it does not do is stop a motivated bad actor, because the two properties above, in the clear and unauthenticated, are properties of the standard itself. We are not revealing a trick. A determined operator already knows the broadcast can be faked. The only people kept in the dark are the public who were told this makes them safer, and the buyers who were sold receivers that believe everything.</p>
+    <p>And one line we will not cross: we publish the defense only. You will not find a spoofing how-to from us, no attack recipe, no board that fakes a fleet. The emperor has no clothes, and here is the shield. Never the sword.</p>
+    <p>That is the whole argument. Remote ID tracks the person telling the truth and waves the liar through, and the industry built to catch the liar mostly cannot. We think the honest pilot deserves the tool that knows the difference. It is free, it is open, and it is already running in your browser.</p>
+  </article>
+
+  <div class="assets">
+    <h3>The tools, all open source</h3>
+    <ul>
+      <li>
+        <div class="name"><code>remoteid</code></div>
+        <div class="desc">ASTM F3411 + DJI DroneID decode with spoof/trust verdicts. no_std. <a href="https://crates.io/crates/remoteid">crates.io</a> &middot; <a href="https://github.com/Mattbusel/remoteid">source</a></div>
+      </li>
+      <li>
+        <div class="name"><code>remoteid-sentinel</code></div>
+        <div class="desc">Flood detection: catch the spoof flood, surface the one real drone. <a href="https://github.com/Mattbusel/remoteid-sentinel">source</a></div>
+      </li>
+      <li>
+        <div class="name"><code>remoteid-esp32</code></div>
+        <div class="desc">The detector on a board that costs about six dollars. <a href="https://github.com/Mattbusel/remoteid-esp32">source</a></div>
+      </li>
+      <li>
+        <div class="name">Demo gallery</div>
+        <div class="desc"><a href="https://mattbusel.github.io/drone-demos/">mattbusel.github.io/drone-demos</a></div>
+      </li>
+      <li>
+        <div class="name">Browser demo (no hardware)</div>
+        <div class="desc"><a href="https://mattbusel.github.io/remoteid-web/">mattbusel.github.io/remoteid-web</a></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <p><strong>We build the defense, not the attack.</strong> Everything here is a detector. We publish no spoofing how-to, no attack recipe, no tool that fakes a fleet. The pilot-location-in-the-clear and unauthenticated-spoofable facts are properties of the ASTM F3411 standard itself, not a trick we are revealing. The emperor has no clothes, and here is the shield. Never the sword.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Mattbusel/remoteid-sentinel">remoteid-sentinel</a>
+      <a href="https://github.com/Mattbusel/remoteid-esp32">remoteid-esp32</a>
+      <a href="https://crates.io/crates/remoteid">remoteid on crates.io</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
