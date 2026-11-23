@@ -68,6 +68,36 @@
   .btn:hover{border-color:var(--accent);color:var(--text)}
   .btn.primary{background:var(--accent);color:#120704;border-color:var(--accent)}
   .btn.primary:hover{background:var(--link);color:#120704}
+  .film{
+    margin:30px 0 8px;
+  }
+  .film a.film-link{
+    display:block;
+    position:relative;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    background:#000;
+    text-decoration:none;
+    transition:border-color .15s;
+  }
+  .film a.film-link:hover{border-color:var(--accent)}
+  .film video,.film img.poster{
+    display:block;width:100%;height:auto;border:0;
+  }
+  .film .play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
+  }
+  .film .play span{
+    display:flex;align-items:center;justify-content:center;
+    width:76px;height:76px;border-radius:999px;
+    background:var(--accent);color:#120704;font-size:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+  }
+  .film .caption{
+    margin:12px 0 0;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
   .assets{
     border:1px solid var(--border);
     border-radius:14px;
@@ -117,6 +147,16 @@
       <a class="btn primary" href="https://mattbusel.github.io/remoteid-web/">Run the browser demo</a>
       <a class="btn" href="https://mattbusel.github.io/drone-demos/">See the demo gallery</a>
       <a class="btn" href="https://crates.io/crates/remoteid">Get the crate</a>
+    </div>
+    <div class="film">
+      <video controls preload="none" playsinline poster="docs/film-poster.png">
+        <source src="https://mattbusel.github.io/drone-demos/film.mp4" type="video/mp4">
+        <a class="film-link" href="https://mattbusel.github.io/drone-demos/watch.html">
+          <img class="poster" src="docs/film-poster.png" alt="Watch the film">
+          <span class="play"><span>&#9654;</span></span>
+        </a>
+      </video>
+      <p class="caption">Watch: 45 seconds. <a href="https://mattbusel.github.io/drone-demos/watch.html">Open the full page</a></p>
     </div>
   </section>
 
